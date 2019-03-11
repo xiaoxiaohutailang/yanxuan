@@ -1,15 +1,40 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
+import Index from '../pages/Index/Index.vue'
+import Cate from '../pages/Cate/Cate.vue'
+import Topic from '../pages/Topic/Topic.vue'
+import Cart from '../pages/Cart/Cart.vue'
+import Login from '../pages/Login/Login.vue'
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+Vue.use(VueRouter)
+export default new VueRouter({
+    mode:'history',
+    routes:[
+        {
+            path:'/index',
+            component:Index
+        },
+        {
+            path:'/cate',
+            component:Cate
+        },
+        {
+            path:'/topic',
+            component:Topic
+        },
+        {
+            path:'/cart',
+            component:Cart
+        },
+        {
+            path:'/login',
+            component:Login
+        },
+        {
+            path:'/',
+            redirect:'/index'
+        }
+
+    ]
 })
