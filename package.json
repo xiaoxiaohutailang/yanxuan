@@ -11,6 +11,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "better-scroll": "^1.14.1",
     "lib-flexible": "^0.3.2",
     "px2rem-loader": "^0.1.9",
     "swiper": "^4.5.0",

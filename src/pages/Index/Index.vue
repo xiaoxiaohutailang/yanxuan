@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="index_box">
     <!--头部-->
     <header id="header-warp">
         <!--头部logo/搜索-->
@@ -14,54 +14,55 @@
         <!--头部导航包裹器-->
         <div class="header-nav-warp">
             <!--导航-->
-            <div class="header-nav-some-warp">
-            <div class="header-nav-some">
-                <a href="javascript:;" class="active" >
-                    <span>推荐</span>
-                </a>
-                <a href="javascript:;">
-                    <span>居家</span>
-                </a>
-                <a href="javascript:;">
-                    <span>鞋包配饰</span>
-                </a>
-                <a href="javascript:;">
-                    <span>服装</span>
-                </a>
-                <a href="javascript:;">
-                    <span>电器</span>
-                </a>
-                <a href="javascript:;">
-                    <span>婴童</span>
-                </a>
-                <a href="javascript:;">
-                    <span>饮食</span>
-                </a>
-                <a href="javascript:;">
-                    <span>洗护</span>
-                </a>
-                <a href="javascript:;">
-                    <span>餐厨</span>
-                </a>
-                <a href="javascript:;">
-                    <span>文体</span>
-                </a>
-                <a href="javascript:;">
+            <div class="header-nav-some-warp" v-show="!isShowAllcate">
+                <div class="header-nav-some">
+                    <a href="javascript:;" class="active" >
+                        <span>推荐</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>居家</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>鞋包配饰</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>服装</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>电器</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>婴童</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>饮食</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>洗护</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>餐厨</span>
+                    </a>
+                    <a href="javascript:;">
+                        <span>文体</span>
+                    </a>
+                    <a href="javascript:;">
                     <span>特色区</span>
                 </a>
-            </div>
+                </div>
             </div>
             <!--全频道（点击显示盖住导航）-->
-            <div class="allTab" style="display: none">
+            <div class="allTab" v-show="isShowAllcate">
                 <span>全部频道</span>
             </div>
             <!--切换按钮-->
-            <div class="toggleBnt">
-                <div class="iconfont icon-xialajiantou"></div>
+            <div class="toggleBnt"  @click="toggleShowCate">
+                <div class="iconfont icon-xialajiantou" v-show="!isShowAllcate"></div>
+                <div class="iconfont  icon-xiangshangjiantou" v-show="isShowAllcate"></div>
             </div>
         </div>
         <!--全部频道-->
-        <div class="header-nav-all" style="display: none">
+        <div class="header-nav-all" v-show="isShowAllcate">
             <div class="all">
                 <a href="javascript;:" >
                     <span>推荐</span>
@@ -385,7 +386,7 @@
         </div>
         <!--人气推荐-->
         <div class="popularGoods">
-            <div class="popularGoods">
+            <div class="popularGoods-header">
                 <span class="popularGoods-title">人气推荐</span>
                 <span class="more">更多></span>
             </div>
@@ -407,28 +408,113 @@
                         <span class="price">¥75</span>
                     </div>
                 </li>
+                <li class="popularGoods-good">
+                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/489d9ee22b95c14044592dcc43ae3aa2.png" alt="">
+                    <div class="text">
+                        <span class="name">30包谷峰一木软抽</span>
+                        <span class="price">¥75</span>
+                    </div>
+                </li>
+                <li class="popularGoods-good">
+                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/489d9ee22b95c14044592dcc43ae3aa2.png" alt="">
+                    <div class="text">
+                        <span class="name">30包谷峰一木软抽</span>
+                        <span class="price">¥75</span>
+                    </div>
+                </li>
             </ul>
         </div>
         <!--专题精选-->
         <div class="topicShop">
             <div class="topicShop-header">
-                <span>专题精选</span>
-                <span>更多</span>
+                <span class="topicShop-header-title">专题精选</span>
+                <span class="more">更多> </span>
             </div>
             <div class="topicShop-warpper">
                 <ul class="topicShop-list">
                     <li class="topicShop-item">
-                        <div >
-                            <img src="" alt="">
+                        <div class="topicShop-img">
+                            <img src="https://yanxuan.nosdn.127.net/571e99aba1df41c9a7098a8c0b83526a.jpg" alt="">
                         </div>
-                        <div>
-                            <span></span>
+                        <div class="topicShop-title">
+                            一个接近满分的黄桃罐头是怎样的？
                         </div>
-                        <div>
-                            <span></span>
+                        <div class="topicShop-subTitle">
+                            肉质剔透，甘润适口
+                        </div>
+                    </li>
+                    <li class="topicShop-item">
+                        <div class="topicShop-img">
+                            <img src="https://yanxuan.nosdn.127.net/571e99aba1df41c9a7098a8c0b83526a.jpg" alt="">
+                        </div>
+                        <div class="topicShop-title">
+                            一个接近满分的黄桃罐头是怎样的？
+                        </div>
+                        <div class="topicShop-subTitle">
+                            肉质剔透，甘润适口
                         </div>
                     </li>
                 </ul>
+            </div>
+        </div>
+        <!--众筹-->
+        <div class="crowd">
+            <div class="crowd-header">
+                <div class="crowd-title">众筹</div>
+                <div class="more">更多></div>
+            </div>
+            <ul class="crowd-list">
+                <li class="crowd-item">
+                    <div class="crowd-item-img">
+                        <img src="https://yanxuan.nosdn.127.net/f0007d7b330b5ed3e88f43f27f9f565a.png" alt="">
+                    </div>
+                    <div class="crowd-item-info">
+                        <div class="crowd-item-title">易武贡茶 迷你普洱茶饼100克</div>
+                        <div class="crowd-item-price">¥198起</div>
+                        <div class="crowd-item-progress">
+                            <div class="bg"></div>
+                        </div>
+                        <div class="crowd-item-percent">216%</div>
+                        <div class="crowd-item-supportNum">
+                            217人支持
+                        </div>
+                    </div>
+                </li>
+                <li class="crowd-item">
+                    <div class="crowd-item-img">
+                        <img src="https://yanxuan.nosdn.127.net/f0007d7b330b5ed3e88f43f27f9f565a.png" alt="">
+                    </div>
+                    <div class="crowd-item-info">
+                        <div class="crowd-item-title">易武贡茶 迷你普洱茶饼100克</div>
+                        <div class="crowd-item-price">¥198起</div>
+                        <div class="crowd-item-progress">
+                            <div class="bg"></div>
+                        </div>
+                        <div class="crowd-item-percent">216%</div>
+                        <div class="crowd-item-supportNum">
+                            217人支持
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--banner + Bscroll组件-->
+        <Category/>
+
+        <!--版权-->
+        <div class="ftWrap">
+            <div class="ftContent">
+                <div class="bd">
+                    <a class="goApp" href="javascript:;">下载APP</a>
+                    <a class="goPc" href="javascript:;">电脑版</a>
+                </div>
+                <p class="copyRight">
+                    <span>网易公司版权所有 © 1997-</span>
+                    <span>2019</span>
+                    <br>
+                    <br>
+                    <span>食品经营许可证：JY13301080111719</span>
+                </p>
             </div>
         </div>
     </div>
@@ -441,41 +527,71 @@
 <script>
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
+    import BScroll from 'better-scroll'
+
+    import Category from '../../components/Category/Category.vue'
     export default {
+       data(){
+           return{
+               isShowAllcate:false
+           }
+       },
+        methods:{
+            toggleShowCate(){
+                this.isShowAllcate = !this.isShowAllcate
+            }
+        },
         mounted(){
-            new Swiper('.swiper-container-banner',{
-                autoplay:true, //自动轮播
-                // delay:1000, //
-                // paginationType: 'custom', //自定义分页器样式
-                loop: true, // 循环模式选项
-                pagination: {
-                    el: '.swiper-pagination',
-                    type: 'custom',
-                    renderCustom: function (swiper, current, total) {
-                        var customPaginationHtml = "";
-                        for (var i = 0; i < total; i++) {
-                            //判断哪个分页器此刻应该被激活
-                            if (i === (current - 1)) {
-                                customPaginationHtml += '<span class="swiper-pagination-customs swiper-pagination-customs-active"></span>';
-                            } else {
-                                customPaginationHtml += '<span class="swiper-pagination-customs"></span>';
-                            }
-                        }
-                        return customPaginationHtml;
-                    }
-                }
-            })
-            new Swiper('.swiper-warp .swiper-container',{
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                },
-            })
+               new Swiper('.swiper-container-banner',{
+                   autoplay:true, //自动轮播
+                   // delay:1000, //
+                   // paginationType: 'custom', //自定义分页器样式
+                   loop: true, // 循环模式选项
+                   pagination: {
+                       el: '.swiper-pagination',
+                       type: 'custom',
+                       renderCustom: function (swiper, current, total) {
+                           var customPaginationHtml = "";
+                           for (var i = 0; i < total; i++) {
+                               //判断哪个分页器此刻应该被激活
+                               if (i === (current - 1)) {
+                                   customPaginationHtml += '<span class="swiper-pagination-customs swiper-pagination-customs-active"></span>';
+                               } else {
+                                   customPaginationHtml += '<span class="swiper-pagination-customs"></span>';
+                               }
+                           }
+                           return customPaginationHtml;
+                       }
+                   }
+               })
+
+               new Swiper('.swiper-warp .swiper-container',{
+                   loop: true,
+                   pagination: {
+                       el: '.swiper-pagination',
+                   },
+               })
+
+               const scroll = new BScroll('.header-nav-some-warp',{
+                   scrollX: true,
+                   scrollY: false,
+                   click:true
+               })
+
+               new BScroll('.topicShop-warpper',{
+                   scrollX: true,
+                   click:true
+               })
+
+        },
+        components:{
+            Category
         }
     }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+.index_box
     #header-warp
         position fixed
         left 0
@@ -527,7 +643,8 @@
                 height 100%
                 overflow hidden
                 .header-nav-some
-                    white-space nowrap
+                    float left
+                    display flex
                     a
                         font-size 27px
                         color #333
@@ -579,8 +696,6 @@
         position relative
         left 0
         top 147px
-        width 100%
-        background pink
         padding-bottom 1.30667rem
         overflow-x hidden
         .mask
@@ -797,7 +912,6 @@
                 height 99px
                 padding: 0 .2rem;
                 clearFix()
-
                 .newGoods-title
                     float left
 
@@ -853,6 +967,7 @@
             font-size: .42667rem;
             .popularGoods-header
                 width: 100%
+                height 99px
                 line-height: 1.33333rem;
                 padding: 0 .2rem;
                 clearFix()
@@ -930,6 +1045,140 @@
                         white-space: normal;
                     .price
                         color: #b4282d
+        .topicShop
+
+            height 530px
+            font-size 32px
+            .topicShop-header
+
+                height 99px
+                box-sizing border-box
+                padding 0 15px
+                .topicShop-header-title
+                    line-height 99px
+                    float left
+                    margin-left 15px
+                .more
+                    line-height 99px
+                    float right
+
+            .topicShop-warpper
+                 height 430px
+                 padding 0 30px 30px 30px
+                 .topicShop-list
+                    height 430px
+                    display flex
+                    float left
+                    .topicShop-item
+                        height 393px
+                        padding-bottom 24px
+                        margin-right 32px
+                        .topicShop-img
+                            width 100%
+                            height 266px
+                            margin-bottom 20px
+                            img
+                                width 480px
+                                height 266px
+                        .topicShop-title
+                            width 450px
+                            height 41px
+                            line-height 41px
+                            padding 0 20px
+                            font-size 30px
+                            white-space nowrap
+                            overflow hidden
+                            text-overflow ellipsis
+                        .topicShop-subTitle
+                            width 480px
+                            height 39px
+                            line-height 39px
+                            padding 0 20px
+
+
+
+        .crowd
+            width 100%
+            height 625px
+            font-size 32px
+            box-sizing border-box
+            padding 0 15px
+            .crowd-header
+                width 100%
+                height 99px
+                border-bottom 1px solid #eee
+                .crowd-title
+                    float left
+                    height 99px
+                    line-height 99px
+                .more
+                    float right
+                    height 99px
+                    line-height 99px
+            .crowd-list
+                .crowd-item
+                    display flex
+                    width 100%
+                    height 247px
+                    padding 30px 15px 0 15px
+                    .crowd-item-img
+                        margin-right 30px
+                        img
+                            width 210px
+                            height 210px
+                    .crowd-item-info
+                        .crowd-item-title
+                            font-size 34px
+                        .crowd-item-price
+                            margin-top 15px
+                            font-size 32px
+                            color #b4282d
+                        .crowd-item-progress
+                            width 360px
+                            height 6px
+                            margin-top 22px
+                            .bg
+                                width 100%
+                                height 100%
+                                background #fea438
+                        .crowd-item-percent
+                            position relative
+                            right -380px
+                            top -15px
+                            font-size 24px
+                            color #7f7f7f
+                        .crowd-item-supportNum
+                            margin-top 20px
+                            font-size 24px
+                            color #7f7f7f
+
+
+
+
+
+        .ftWrap
+            width 100%
+            height 253px
+            background #414141
+            border 1px solid rgba(0,0,0,.15)
+            .ftContent
+                text-align center
+                padding 60px 20px 28px 20px
+                .bd
+                   .goApp
+                        margin-right 50px
+                        padding 18px 40px
+                        border 1px solid #fff
+                        color #fff
+                   .goPc
+                        margin-right 40px
+                        padding 18px 40px
+                        border 1px solid #fff
+                        color #fff
+                .copyRight
+                    margin-top 40px
+                    color #999
+
 </style>
 <style>
     /*自定义分页器的样式，这个你自己想要什么样子自己写*/
