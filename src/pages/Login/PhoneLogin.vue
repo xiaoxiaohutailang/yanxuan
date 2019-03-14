@@ -1,6 +1,6 @@
 <template>
-    <div  class="login-warp">
-        <!--头部-->
+    <div class="phonLogin-warp">
+
         <div class="header-warp">
             <div class="header">
                 <div class="header-left">
@@ -19,46 +19,47 @@
                 </div>
             </div>
         </div>
-        <!--内容logo区域-->
         <div class="content-warp">
             <div class="content-logo">
                 <img src="//yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">
             </div>
-            <!--手机登录-->
-            <div class="content-phone" @click="$router.replace('/phone')">
-                <i class="iconfont icon-shouji" ></i>
-                <span>手机号码登录</span>
+            <input type="text" placeholder="请输入手机号" v-model="phone">
+            <div class="password-wrap">
+                <input type="text" placeholder="请输入短信验证码" v-model="code">
+                <div class="code">获取验证码</div>
             </div>
-            <div class="content-email" @click="$router.replace('/email')">
-                <i class="iconfont icon-youxiang"></i>
-                <span>邮箱账号登录</span>
+            <div class="otherWay">
+                <span>遇到问题？</span>
+                <span>使用密码验证登录</span>
             </div>
-            <div class="register-phone">手机号快捷注册></div>
-            <div class="login-other">
-                <div class="weChat">
-                    <i class="iconfont icon-weixin"></i>
-                    <span>微信&nbsp;&nbsp; | </span>
-                </div>
-                <div class="QQ">
-                    <i class="iconfont icon-QQ"> </i>
-                    <span>QQ&nbsp;&nbsp; |</span>
-                </div>
-                <div class="weibo">
-                    <i class="iconfont icon-weibo"></i>
-                    <span>微博&nbsp;&nbsp; </span>
-                </div>
-            </div>
+            <div class="login">登录</div>
+            <div class="otherWap" @click="$router.replace('/login')">其他登录方式</div>
+            <div class="register">注册账号> </div>
         </div>
     </div>
-
 </template>
 
 <script>
-    export default {}
+    export default {
+        data(){
+          return{
+            phone:'',
+            code:''
+          }
+        },
+        method:{
+
+        },
+        computed:{
+            isPhone(){
+                return /^1\d{10}$/.test(this.phone)
+            }
+        }
+    }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-    .login-warp
+    .phonLogin-warp
         width 100%
         .header-warp
             width 750px
@@ -105,65 +106,71 @@
                             margin-left 34px
         .content-warp
             height 418px
-            background #F2F5F4
+            background #fff
             .content-logo
-                height 258px
-                text-align center
-                padding-top 160px
-                img
-                    width 268px
-                    height 90px
-            .content-phone
-                margin 30px 0 30px 40px
-                width 677px
-                height 96px
-                background #b4282d
-                line-height 96px
-                text-align center
-                .iconfont
-                    font-size 30px
-                    color: #ffffff
-                span
-                    color: #fff
+                  height 130px
+                  text-align center
+                  padding 75px 0 85px 0
+                  img
+                      width 190px
+                      height 64px
+            input
+                width 90%
+                height 90px
+                margin-left 30px
+                font-size 26px
+                outline none
+                border-bottom 2px solid #bdbdbd
+            .password-wrap
+                position relative
+                top 0
+                left 0
+                width 100%
+                height 103px
+                margin-top 20px
+                margin-left 30px
+                input
+                    margin-left 0
+                    outline none
+                .code
+                    position absolute
+                    right 75px
+                    top 25px
+                    width 174px
+                    height 58px
+                    line-height 58px
+                    border 1px solid #333
+                    text-align center
                     font-size 28px
 
-            .content-email
-                margin 30px 0 30px 40px
+            .otherWay
+                width 100%
+                height 105px
+                box-sizing border-box
+                padding: 0 20px
+                line-height 105px
+                display flex
+                justify-content space-between
+                font-size 28px
+
+            .login
                 width 677px
+                height 96px
+                line-height 96px
+                background #b4282d
+                text-align center
+                color #fff
+                font-size 28px
+                margin 32px 0 32px 30px
+
+            .otherWap
+                width 667px
                 height 96px
                 line-height 96px
                 text-align center
                 border 1px solid #b4282d
-                .iconfont
-                    font-size 30px
-                    color: #b4282d
-                span
-                    color: #b4282d
-                    font-size 28px
-            .register-phone
+                margin 32px 0 32px 30px
+            .register
                 text-align center
                 font-size 28px
-            .login-other
-                padding-top 390px
-                height 40px
-                display flex
-                justify-content center
-                align-items center
-                .weChat
-                    font-size 30px
-                    margin-right 20px
-                    .iconfont
-                        font-size 30px
-
-                .QQ
-                    font-size 30px
-                    margin 0  20px
-                    .iconfont
-                        font-size 30px
-                .weibo
-                    font-size 30px
-                    margin-left 20px
-                    .iconfont
-                        font-size 30px
-
 </style>

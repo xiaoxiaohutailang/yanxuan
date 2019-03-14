@@ -9,80 +9,12 @@
         <div class="content">
             <div class="cateNav-warp">
                 <ul class="cateNav-list">
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
-                    </li>
-                    <li class="cateNav-item">
-                        <a href="javascript:;">
-                            <span>推荐专区</span>
-                        </a>
+                    <li class="cateNav-item "
+                        :class="categoryItem.id===Number($route.query.categoryId) ?'active': ''"
+                        v-for="(categoryItem,index) in categorys.categoryL1List" :key="index" >
+                        <router-link :to="`/cate/cateList?categoryId=${categoryItem.id}`">
+                            <span>{{categoryItem.name}}</span>
+                        </router-link>
                     </li>
                 </ul>
             </div>
@@ -94,14 +26,20 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     import BScroll from 'better-scroll'
     export default {
+        computed:{
+            ...mapState({
+                categorys:state => state.categorys
+            })
+        },
         mounted(){
+            this.$store.dispatch("getCategorys")
             const scroll = new BScroll('.cateNav-warp',{
                 click:true,
                 scrollY:true
             })
-            console.log(scroll);
         }
     }
 </script>
@@ -117,6 +55,7 @@
         height 89px
         box-sizing border-box
         padding 15px 35px
+        margin-buttom 45px
         .search
             width 675px
             height 56px
@@ -134,17 +73,23 @@
     .content
         .cateNav-warp
             width 162px
-            height 1125px
+            height 1110px
             position relative
             float left
             .cateNav-list
                 width 100%
-                overflow hidden
+                padding-top 45px
                 .cateNav-item
                     text-align center
                     height 50px
                     font-size 28px
                     margin-top 45px
+                    &:first-child
+                        margin-top 90px
+                    &.active
+                        border-left 5px solid #ab2b2b
+                        span
+                            color #ab2b2b
         .cateContent-warp
             position relative
             margin-left 162px

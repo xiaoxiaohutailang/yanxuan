@@ -8,6 +8,8 @@ import Topic from '../pages/Topic/Topic.vue'
 import Cart from '../pages/Cart/Cart.vue'
 import Login from '../pages/Login/Login.vue'
 import Search from '../pages/Search/Search.vue'
+import PhoneLogin from '../pages/Login/PhoneLogin.vue'
+import EmailLogin from '../pages/Login/EmailLogin.vue'
 
 Vue.use(VueRouter)
 export default new VueRouter({
@@ -59,11 +61,19 @@ export default new VueRouter({
         },
         {
             path:'/login',
-            component:Login
+            component:Login,
         },
         {
             path:'/search',
             component:Search
+        },
+        {
+            path:'/phone',
+            component:PhoneLogin
+        },
+        {
+          path:'/email',
+          component:EmailLogin
         },
         {
             path:'/',

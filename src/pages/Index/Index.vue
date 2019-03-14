@@ -64,7 +64,7 @@
         <!--全部频道-->
         <div class="header-nav-all" v-show="isShowAllcate">
             <div class="all">
-                <a href="javascript;:" >
+                <a href="javascript;:">
                     <span>推荐</span>
                 </a>
                 <a href="javascript;:" >
@@ -108,8 +108,7 @@
         <div class="swiper-container-banner">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img
-                            src="https://yanxuan.nosdn.127.net/bec4a597a9aed55605eeb7c0c7710f9b.jpg?imageView&quality=75&thumbnail=750x0"
+                    <img src="https://yanxuan.nosdn.127.net/bec4a597a9aed55605eeb7c0c7710f9b.jpg?imageView&quality=75&thumbnail=750x0"
                             alt="">
                 </div>
                 <div class="swiper-slide">
@@ -166,46 +165,10 @@
             </div>
         </div>
         <!--商品导航-->
-        <ul class="shopNav">
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/698205eb5a605f0f7c27aebadacd2317.png" alt="">
-                <span>居家</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/855a0ee7410f534f3db3f7f3a687c153.png" alt="">
-                <span>鞋包配饰</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/42b4ab968ae5b0f38e608131fb68a095.png" alt="">
-                <span>服饰</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/40e494813fae78a483483d32fd7338b1.png" alt="">
-                <span>电器</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/8fab9e34dd0f078fc85dedfa8478b3d5.png" alt="">
-                <span>婴童</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/449019db4190bf9ae98b7f2d62d42e26.png" alt="">
-                <span>饮食</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/50acb3ffe87d9ef77834eb379fe017cc.png" alt="">
-                <span>洗护</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/78616d875a47d3f4639f8448775b138e.png" alt="">
-                <span>餐厨</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/21fd4a2a1cf38ce43c2b23825e5508a8.png" alt="">
-                <span>文体</span>
-            </li>
-            <li>
-                <img src="http://yanxuan.nosdn.127.net/073855a1da7a21bf3cab628b99688cc1.png" alt="">
-                <span>特色区</span>
+        <ul class="shopNav" v-if="categories.kingKongModule">
+            <li v-for="(kingkong,index) in categories.kingKongModule.kingKongList" :key="index">
+                <img v-lazy="kingkong.picUrl" alt="">
+                <span>{{kingkong.text}}</span>
             </li>
         </ul>
         <!--ceo推荐-->
@@ -213,31 +176,16 @@
             <img src="https://yanxuan.nosdn.127.net/df012027a9bd3c0b0e5779c11b814180.png" alt="">
         </div>
         <!--好物榜-->
-       <ul class="goodRes">
-           <li class="goodResItem">
-               <div class="title">实时好评榜</div>
-               <div class="desc">精选优质好物</div>
-               <img src="http://yanxuan.nosdn.127.net/e4092e675f895740f8e079980e8ebe63.png" alt="">
-               <img src="http://yanxuan.nosdn.127.net/6725890e905c4d51e333485f3a934192.png" alt="">
+       <ul class="goodRes" v-if="categories.sceneLightShoppingGuideModule">
+           <li class="goodResItem" v-for="(shoppingGuide, index) in categories.sceneLightShoppingGuideModule"
+                    :key="index">
+               <div class="title">{{shoppingGuide.styleItem.title}}</div>
+               <div class="desc">{{shoppingGuide.styleItem.desc}}</div>
+               <img v-lazy="itemPic.picUrl" alt=""
+                    v-for="(itemPic, index) in shoppingGuide.styleItem.itemPicBeanList">
+
            </li>
-           <li class="goodResItem">
-               <div class="title">新品热销榜</div>
-               <div class="desc">好物抢先体验</div>
-               <img src="http://yanxuan.nosdn.127.net/780b2fc0c98fac7b2862a8a111ee615f.png" alt="">
-               <img src="http://yanxuan.nosdn.127.net/77bf1ff658f8557391f1b3204cb8ab3b.png" alt="">
-           </li>
-           <li class="goodResItem">
-               <div class="title">严选线下首家店</div>
-               <div class="desc">体验选式美学</div>
-               <img src="http://yanxuan.nosdn.127.net/a07c82f8b26a4ed42b1d697eb9ea418f.png" alt="">
-               <img src="http://yanxuan.nosdn.127.net/d1d2488296c5e75967ebfbdf8a36d6cc.png" alt="">
-           </li>
-           <li class="goodResItem">
-               <div class="title">12月必买好物</div>
-               <div class="desc">冬日小确幸指南</div>
-               <img src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png" alt="">
-               <img src="http://yanxuan.nosdn.127.net/e1d2f0b529eddc9b645997d0f16e9aca.png" alt="">
-           </li>
+
        </ul>
         <!--私人定制-->
         <div class="personalShop">
@@ -245,7 +193,7 @@
             <div class="swiper-warp">
                 <div class="swiper-container">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
+                    <div class="swiper-slide" >
                         <div class="personalShop-item">
                             <img class="primaryPic" src="http://yanxuan.nosdn.127.net/74452c652a03866b6de171362f9ab4a8.png" alt="">
                             <div class="text">
@@ -300,36 +248,12 @@
                 </div>
                 <span class="more">更多</span>
             </div>
-            <ul class="timeToBuy-goods">
-                <li class="timeToBuy-good">
-                    <img src="http://yanxuan.nosdn.127.net/ff90462e4d7c7edd01a25f8932e1800f.png" alt="">
-                    <span class="activityPrice">￥289</span>
-                    <span class="originPrice">￥349</span>
-                </li>
-                <li class="timeToBuy-good">
-                    <img src="http://yanxuan.nosdn.127.net/fe06530dd35ec5062c1ecaf82d4812d6.png" alt="">
-                    <span class="activityPrice">￥125</span>
-                    <span class="originPrice">￥175</span>
-                </li>
-                <li class="timeToBuy-good">
-                    <img src="http://yanxuan.nosdn.127.net/de34d4d8407709f2edd88597d66fcfcb.png" alt="">
-                    <span class="activityPrice">￥584</span>
-                    <span class="originPrice">￥899</span>
-                </li>
-                <li class="timeToBuy-good">
-                    <img src="http://yanxuan.nosdn.127.net/da9c2255909d0d1fe5cabff6d93c03db.png" alt="">
-                    <span class="activityPrice">￥2079</span>
-                    <span class="originPrice">￥2599</span>
-                </li>
-                <li class="timeToBuy-good">
-                    <img src="http://yanxuan.nosdn.127.net/8b7bde0b395e2bda54505cf4c3b7880b.png" alt="">
-                    <span class="activityPrice">￥29.9</span>
-                    <span class="originPrice">￥35.9</span>
-                </li>
-                <li class="timeToBuy-good">
-                    <img src="http://yanxuan.nosdn.127.net/2adbaae8403ac4dcac56ebf2ff1a5116.png" alt="">
-                    <span class="activityPrice">￥87.9</span>
-                    <span class="originPrice">￥109</span>
+            <ul class="timeToBuy-goods" v-if="categories.flashSaleModule">
+                <li class="timeToBuy-good" v-for="(item,index) in categories.flashSaleModule.itemList"
+                            :key="index">
+                    <img v-lazy="item.picUrl" alt="">
+                    <span class="activityPrice">￥{{item.activityPrice}}</span>
+                    <span class="originPrice">￥{{item.originPrice}}</span>
                 </li>
             </ul>
         </div>
@@ -340,45 +264,10 @@
                 <span class="more">更多></span>
             </div>
             <ul class="newGoods-goods" >
-                <li class="newGoods-good" >
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/6ca5da68fa4e87086126f9a124442da9.jpg" alt="">
+                <li class="newGoods-good" v-for="(item,index) in categories.newItemList" :key="index">
+                    <img class="primaryPic" v-lazy="item.primaryPicUrl" alt="">
                     <div class="text">
-                        <span class="name">严选X颐和园 联名</span>
-                        <span class="price">¥58</span>
-                    </div>
-                </li>
-                <li class="newGoods-good" >
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/6ca5da68fa4e87086126f9a124442da9.jpg" alt="">
-                    <div class="text">
-                        <span class="name">严选X颐和园 联名</span>
-                        <span class="price">¥58</span>
-                    </div>
-                </li>
-                <li class="newGoods-good" >
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/6ca5da68fa4e87086126f9a124442da9.jpg" alt="">
-                    <div class="text">
-                        <span class="name">严选X颐和园 联名</span>
-                        <span class="price">¥58</span>
-                    </div>
-                </li>
-                <li class="newGoods-good" >
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/6ca5da68fa4e87086126f9a124442da9.jpg" alt="">
-                    <div class="text">
-                        <span class="name">严选X颐和园 联名</span>
-                        <span class="price">¥58</span>
-                    </div>
-                </li>
-                <li class="newGoods-good" >
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/6ca5da68fa4e87086126f9a124442da9.jpg" alt="">
-                    <div class="text">
-                        <span class="name">严选X颐和园 联名</span>
-                        <span class="price">¥58</span>
-                    </div>
-                </li>
-                <li class="newGoods-good" >
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/6ca5da68fa4e87086126f9a124442da9.jpg" alt="">
-                    <div class="text">
-                        <span class="name">严选X颐和园 联名</span>
+                        <span class="name">{{item.name}}</span>
                         <span class="price">¥58</span>
                     </div>
                 </li>
@@ -390,36 +279,22 @@
                 <span class="popularGoods-title">人气推荐</span>
                 <span class="more">更多></span>
             </div>
-            <div class="spItem">
+            <div class="spItem" v-for="(popularItem, index) in categories.popularItemList" v-if="index<=0" :key="index">
                 <div class="spItem-img">
-                    <img src="http://yanxuan.nosdn.127.net/e52cb767feb1578fbb7f2b77d70267c8.png" alt="">
+                    <img v-lazy="popularItem.primaryPicUrl" alt="">
                 </div>
                 <div class="spItem-des">
-                    <div class="name">21s素暖轻磨毛四件套</div>
-                    <div class="desc">厚实粗犷肌理感，越睡越舒适</div>
-                    <div class="price">¥999</div>
+                    <div class="name">{{popularItem.name}}</div>
+                    <div class="desc">{{popularItem.simpleDesc}}</div>
+                    <div class="price">¥{{popularItem.counterPrice}}</div>
                 </div>
             </div>
             <ul class="popularGoods-goods">
-                <li class="popularGoods-good">
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/489d9ee22b95c14044592dcc43ae3aa2.png" alt="">
+                <li class="popularGoods-good" v-for="(popularItem,index) in categories.popularItemList" :key="index" v-if="index-1">
+                    <img class="primaryPic" v-lazy="popularItem.primaryPicUrl" alt="">
                     <div class="text">
-                        <span class="name">30包谷峰一木软抽</span>
-                        <span class="price">¥75</span>
-                    </div>
-                </li>
-                <li class="popularGoods-good">
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/489d9ee22b95c14044592dcc43ae3aa2.png" alt="">
-                    <div class="text">
-                        <span class="name">30包谷峰一木软抽</span>
-                        <span class="price">¥75</span>
-                    </div>
-                </li>
-                <li class="popularGoods-good">
-                    <img class="primaryPic" src="http://yanxuan.nosdn.127.net/489d9ee22b95c14044592dcc43ae3aa2.png" alt="">
-                    <div class="text">
-                        <span class="name">30包谷峰一木软抽</span>
-                        <span class="price">¥75</span>
+                            <span class="name">{{popularItem.name}}</span>
+                        <span class="price">¥{{popularItem.counterPrice}}</span>
                     </div>
                 </li>
             </ul>
@@ -432,26 +307,15 @@
             </div>
             <div class="topicShop-warpper">
                 <ul class="topicShop-list">
-                    <li class="topicShop-item">
+                    <li class="topicShop-item" v-for="(topic,index) in categories.topicList" :key="index">
                         <div class="topicShop-img">
-                            <img src="https://yanxuan.nosdn.127.net/571e99aba1df41c9a7098a8c0b83526a.jpg" alt="">
+                            <img v-lazy="topic.scenePicUrl" alt="">
                         </div>
                         <div class="topicShop-title">
-                            一个接近满分的黄桃罐头是怎样的？
+                           {{topic.title}}
                         </div>
                         <div class="topicShop-subTitle">
-                            肉质剔透，甘润适口
-                        </div>
-                    </li>
-                    <li class="topicShop-item">
-                        <div class="topicShop-img">
-                            <img src="https://yanxuan.nosdn.127.net/571e99aba1df41c9a7098a8c0b83526a.jpg" alt="">
-                        </div>
-                        <div class="topicShop-title">
-                            一个接近满分的黄桃罐头是怎样的？
-                        </div>
-                        <div class="topicShop-subTitle">
-                            肉质剔透，甘润适口
+                           {{topic.subtitle}}
                         </div>
                     </li>
                 </ul>
@@ -464,43 +328,29 @@
                 <div class="more">更多></div>
             </div>
             <ul class="crowd-list">
-                <li class="crowd-item">
+                <li class="crowd-item" v-for="(zcList,index) in categories.zhongChouList" :key="index">
                     <div class="crowd-item-img">
-                        <img src="https://yanxuan.nosdn.127.net/f0007d7b330b5ed3e88f43f27f9f565a.png" alt="">
+                        <img v-lazy="zcList.picUrl" alt="">
                     </div>
                     <div class="crowd-item-info">
-                        <div class="crowd-item-title">易武贡茶 迷你普洱茶饼100克</div>
-                        <div class="crowd-item-price">¥198起</div>
+                        <div class="crowd-item-title">{{zcList.name}}</div>
+                        <div class="crowd-item-price">{{zcList.showRetailPrice}}</div>
                         <div class="crowd-item-progress">
                             <div class="bg"></div>
                         </div>
-                        <div class="crowd-item-percent">216%</div>
+                        <div class="crowd-item-percent">{{zcList.progress}}%</div>
                         <div class="crowd-item-supportNum">
-                            217人支持
+                            {{zcList.supportNum}}
                         </div>
                     </div>
                 </li>
-                <li class="crowd-item">
-                    <div class="crowd-item-img">
-                        <img src="https://yanxuan.nosdn.127.net/f0007d7b330b5ed3e88f43f27f9f565a.png" alt="">
-                    </div>
-                    <div class="crowd-item-info">
-                        <div class="crowd-item-title">易武贡茶 迷你普洱茶饼100克</div>
-                        <div class="crowd-item-price">¥198起</div>
-                        <div class="crowd-item-progress">
-                            <div class="bg"></div>
-                        </div>
-                        <div class="crowd-item-percent">216%</div>
-                        <div class="crowd-item-supportNum">
-                            217人支持
-                        </div>
-                    </div>
-                </li>
+
             </ul>
         </div>
         <!--banner + Bscroll组件-->
-        <Category/>
-
+        <div v-for="(categorie, index) in categories.categoryModule" :key="index">
+            <Category :categorie="categorie" :index="index"/>
+        </div>
         <!--版权-->
         <div class="ftWrap">
             <div class="ftContent">
@@ -528,6 +378,7 @@
     import Swiper from 'swiper'
     import 'swiper/dist/css/swiper.min.css'
     import BScroll from 'better-scroll'
+    import {mapState} from 'vuex'
 
     import Category from '../../components/Category/Category.vue'
     export default {
@@ -536,57 +387,71 @@
                isShowAllcate:false
            }
        },
+        mounted(){
+            this.$store.dispatch('getCategories')
+        },
         methods:{
             toggleShowCate(){
                 this.isShowAllcate = !this.isShowAllcate
+            },
+            _initSwiper(){
+                new Swiper('.swiper-container-banner',{
+                    autoplay:true, //自动轮播
+                    // delay:1000, //
+                    // paginationType: 'custom', //自定义分页器样式
+                    loop: true, // 循环模式选项
+                    pagination: {
+                        el: '.swiper-pagination',
+                        type: 'custom',
+                        renderCustom: function (swiper, current, total) {
+                            var customPaginationHtml = "";
+                            for (var i = 0; i < total; i++) {
+                                //判断哪个分页器此刻应该被激活
+                                if (i === (current - 1)) {
+                                    customPaginationHtml += '<span class="swiper-pagination-customs swiper-pagination-customs-active"></span>';
+                                } else {
+                                    customPaginationHtml += '<span class="swiper-pagination-customs"></span>';
+                                }
+                            }
+                            return customPaginationHtml;
+                        }
+                    }
+                })
+                new Swiper('.swiper-warp .swiper-container',{
+                    loop: true,
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
+                })
+            },
+            _initScroll(){
+                new BScroll('.header-nav-some-warp',{
+                    scrollX: true,
+                    scrollY: false,
+                    click:true
+                })
+                new BScroll('.topicShop-warpper',{
+                    scrollX: true,
+                    click:true
+                })
             }
         },
-        mounted(){
-               new Swiper('.swiper-container-banner',{
-                   autoplay:true, //自动轮播
-                   // delay:1000, //
-                   // paginationType: 'custom', //自定义分页器样式
-                   loop: true, // 循环模式选项
-                   pagination: {
-                       el: '.swiper-pagination',
-                       type: 'custom',
-                       renderCustom: function (swiper, current, total) {
-                           var customPaginationHtml = "";
-                           for (var i = 0; i < total; i++) {
-                               //判断哪个分页器此刻应该被激活
-                               if (i === (current - 1)) {
-                                   customPaginationHtml += '<span class="swiper-pagination-customs swiper-pagination-customs-active"></span>';
-                               } else {
-                                   customPaginationHtml += '<span class="swiper-pagination-customs"></span>';
-                               }
-                           }
-                           return customPaginationHtml;
-                       }
-                   }
-               })
-
-               new Swiper('.swiper-warp .swiper-container',{
-                   loop: true,
-                   pagination: {
-                       el: '.swiper-pagination',
-                   },
-               })
-
-               const scroll = new BScroll('.header-nav-some-warp',{
-                   scrollX: true,
-                   scrollY: false,
-                   click:true
-               })
-
-               new BScroll('.topicShop-warpper',{
-                   scrollX: true,
-                   click:true
-               })
-
+        computed:{
+            ...mapState({
+                categories:state => state.categories
+            })
+        },
+        watch:{
+            categories(){
+                this.$nextTick( () => {
+                    this._initSwiper()
+                    this._initScroll()
+                })
+            }
         },
         components:{
             Category
-        }
+        },
     }
 </script>
 
@@ -844,7 +709,7 @@
             height 735px
             padding 0 30px
             font-size 32px
-
+            margin-top 40px
             overflow: hidden;
             .timeToBuy-header
                 width: 100%
@@ -901,12 +766,13 @@
 
         .newGoods
             width: 100%;
+            height 720px
             line-height: 1.33333rem;
             background: #fff;
             overflow: hidden;
             padding: 0 .2rem;
             font-size: .42667rem;
-
+            overflow hidden
             .newGoods-header
                 width: 100%
                 height 99px
@@ -1046,7 +912,6 @@
                     .price
                         color: #b4282d
         .topicShop
-
             height 530px
             font-size 32px
             .topicShop-header
@@ -1157,28 +1022,35 @@
 
 
         .ftWrap
+            background-color: #414141;
             width 100%
-            height 253px
-            background #414141
-            border 1px solid rgba(0,0,0,.15)
+            height 251px
+            overflow hidden
             .ftContent
-                text-align center
-                padding 60px 20px 28px 20px
+                text-align: center;
+                margin-right: auto;
+                margin-left: auto;
                 .bd
-                   .goApp
-                        margin-right 50px
-                        padding 18px 40px
-                        border 1px solid #fff
-                        color #fff
-                   .goPc
-                        margin-right 40px
-                        padding 18px 40px
-                        border 1px solid #fff
-                        color #fff
-                .copyRight
                     margin-top 40px
-                    color #999
-
+                    height 70px
+                    .goApp
+                        margin-right: 50px
+                        padding 0.23333rem 0.53333rem
+                        width: 18px
+                        font-size: 24px
+                        color: #fff;
+                        border 1px #fff solid
+                    .goPc
+                        width: 172px
+                        padding 15px 40px
+                        font-size: 24px;
+                        color: #fff;
+                        border 1px #fff solid
+                    .copyRight
+                        display block
+                        font-size: 24px
+                        margin-top 40px
+                        color: #999;
 </style>
 <style>
     /*自定义分页器的样式，这个你自己想要什么样子自己写*/

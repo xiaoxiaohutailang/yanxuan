@@ -1,116 +1,58 @@
 <template>
     <!--banner + Bscroll-->
      <div class="wrap">
-            <div class="banner">
-                <img src="https://yanxuan.nosdn.127.net/1a6763ce33440783cc6700fd132b6375.jpg" alt="">
+            <div class="banner" >
+                <img :src="categorie.titlePicUrl" alt="">
             </div>
-            <div class="goodGuid-warp">
-                    <ul class="goodGuid">
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                        <li class="good">
-                            <div class="good-img">
-                                <img src="http://yanxuan.nosdn.127.net/d391ff6177d8e9a6b29356c15ba97713.png" alt="">
-                            </div>
-                            <div class="good-info-name">
-                                <span>20寸 纯PC“铝框”（非全铝）登机箱</span>
-                            </div>
-                            <div class="good-info-price">
-                                <span>¥349</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+            <div :class="'goodGuid-warp'+ index" class="goodGuid-warp">
+                <ul class="goodGuid" >
+                    <li class="good" v-for="(item, index) in categorie.itemList" :key="index">
+                        <div class="good-img">
+                            <img :src="item.primaryPicUrl" alt="">
+                        </div>
+                        <div class="good-info-name">
+                            <span>{{item.name}}</span>
+                        </div>
+                        <div class="good-info-price">
+                            <span>¥{{item.counterPrice}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
 </template>
 
 <script>
     import BScroll from 'better-scroll'
     export default {
-        mounted(){
-            const scroll = new BScroll ('.goodGuid-warp',{
-                scrollX: true,
-                click: true
-                
-            })
-            console.log(scroll);
-        }
-    }
+        props:{
+            categorie:Object,
+            index:Number
+        },
+        // methods:{
+        //   _initScroll(){
+        //       new BScroll ('.goodGuid-warp',{
+        //           scrollX: true,
+        //           click: true
+        //       })
+        //
+        //   }
+        // },
+        // watch:{
+        //     categorie(){
+        //         this.$nextTick(() => {
+        //             this._initScroll()
+        //         })
+        //     }
+        // }
+     mounted(){
+       const scroll = new BScroll ('.goodGuid-warp'+ this.index,{
+                          scrollX: true,
+                         click: true
+                       })
+                console.log('scroll',scroll);
+     }
+   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">

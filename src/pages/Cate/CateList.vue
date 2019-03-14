@@ -1,16 +1,17 @@
 <template>
     <div class="scroll-warp">
             <div class="scrollContent">
-                <div class="banner">
+                <div class="banner" >
                     <img src="http://yanxuan.nosdn.127.net/ebf42d9334b2e23c009313eb097aadd2.jpg" alt="">
                 </div>
                 <div class="cateList">
                     <ul class="list">
-                        <li class="item">
+                        <li class="item"
+                            v-for="(categoryItem2,index) in categorys.categoryL2List" :key="index">
                             <div class="item-img">
-                                <img src="http://yanxuan.nosdn.127.net/14bbdfb252b4ce346b8e9d019bb5b677.png" alt="">
+                                <img v-lazy="categoryItem2.bannerUrl" alt="">
                             </div>
-                            <div class="item-title">丁磊的好货推荐</div>
+                            <div class="item-title">{{categoryItem2.name}}</div>
                         </li>
                     </ul>
                 </div>
@@ -20,13 +21,20 @@
 
 <script>
     import BScroll from 'better-scroll'
+    import {mapState} from 'vuex'
     export default {
-       // mounten(){
-       //     const scroll = new BScroll('.scroll-warp',{
-       //          click:true
-       //     })
-       //     console.log(scroll);
-       // }
+       mounted(){
+           // this.$store.dispatch('get')
+           const scroll = new BScroll('.scroll-warp',{
+                click:true
+           })
+           console.log(scroll);
+       },
+        computed:{
+            ...mapState({
+                categorys: state => state.categorys
+            })
+        }
     }
 </script>
 
@@ -41,10 +49,13 @@
         .cateList
             width 528px
             .list
+                display flex
+                flex-wrap wrap
                 .item
                     width 114px
                     height 216px
                     margin-right 32px
+                    margin-left 20px
                     .item-img
                         img
                             display block
